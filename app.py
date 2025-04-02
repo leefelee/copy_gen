@@ -11,7 +11,7 @@ project_name = st.text_input("專案名稱")
 project_context = st.text_area("專案頁文字內容（供 GPT 理解專案背景使用）")
 project_pitch = st.text_area("主要訴求／亮點")
 target_audience = st.text_input("目標受眾")
-tone_style = st.selectbox("語氣風格", ["活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
+tone_style = st.selectbox("語氣風格", ["請選擇", "活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
 extra_info = st.text_area("補充資訊（選填）")
 
 # ✅ 使用者上傳風格文案檔案（僅儲存一次）
