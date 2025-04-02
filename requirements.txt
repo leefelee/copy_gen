@@ -1,3 +1,4 @@
 streamlit
 openai
-newspaper3k
+requests
+beautifulsoup4

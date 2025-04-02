@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
-from newspaper import Article
+import requests
+from bs4 import BeautifulSoup
 
 st.set_page_config(page_title="EDM 文案產生器", layout="centered")
 st.title("📧 EDM 文案產生器（群眾集資專用）")
@@ -19,10 +20,12 @@ api_key = st.text_input("請輸入你的 OpenAI API Key", type="password")
 web_summary = ""
 if project_url:
     try:
-        article = Article(project_url)
-        article.download()
-        article.parse()
-        web_summary = article.title + "\n" + article.text[:1000]
+        response = requests.get(project_url, timeout=5)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        title = soup.title.string if soup.title else ""
+        paragraphs = soup.find_all('p')
+        text_content = '\n'.join([p.get_text() for p in paragraphs[:10]])
+        web_summary = title + '\n' + text_content
         st.text_area("🔍 網頁自動摘要內容（供 GPT 理解背景使用）", web_summary, height=200)
     except Exception as e:
         st.warning(f"無法解析該網址內容：{str(e)}")
