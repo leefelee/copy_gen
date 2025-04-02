@@ -58,7 +58,8 @@ TEST_API_KEY = "sk-actual-demo-key-should-be-replaced"
 
 # 👉 當按下按鈕後產生文案
 if st.button("產生 EDM 文案（限測試 50 次）"):
-    openai.api_key = TEST_API_KEY
+   openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 
     # Prompt 設定
     prompt = f"""
