@@ -10,15 +10,8 @@ st.title("📧 EDM 文案產生器（群眾集資專用）")
 # 👉 使用者輸入欄位
 project_url = st.text_input("專案網址")
 project_name = ""
-project_pitch = st.text_area("主要訴求／亮點")
-target_audience = st.text_input("目標受眾")
-tone_style = st.selectbox("語氣風格", ["活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
-extra_info = st.text_area("補充資訊（選填）")
-
-TEST_API_KEY = "sk-actual-demo-key-should-be-replaced"
-
-# 解析網址內容
 web_summary = ""
+
 if project_url:
     try:
         response = requests.get(project_url, timeout=5)
@@ -56,6 +49,13 @@ if project_url:
 else:
     project_name = st.text_input("專案名稱")
 
+project_pitch = st.text_area("主要訴求／亮點")
+target_audience = st.text_input("目標受眾")
+tone_style = st.selectbox("語氣風格", ["活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
+extra_info = st.text_area("補充資訊（選填）")
+
+TEST_API_KEY = "sk-actual-demo-key-should-be-replaced"
+
 # 👉 當按下按鈕後產生文案
 if st.button("產生 EDM 文案（限測試 50 次）"):
     openai.api_key = TEST_API_KEY
@@ -69,7 +69,7 @@ if st.button("產生 EDM 文案（限測試 50 次）"):
 語氣符合該專案的風格（例：溫暖、理性、感性、趣味、使命感等）。
 不違反任何平台規範、無誤導性、善良風俗與公共道德。
 可適度使用 emoji，但需自然、加分不干擾閱讀。
-書寫時每一句都要換行。
+每一句轉寫完都要換行。
 文末加入一句 CTA（行動號召語），並以「▸」結尾。
 
 請依據下列專案資訊進行撰寫：
