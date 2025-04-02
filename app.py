@@ -6,7 +6,7 @@ st.set_page_config(page_title="EDM 文案產生器", layout="centered")
 st.title("📧 EDM 文案產生器（群眾集資專用）")
 
 # 👉 使用者輸入欄位
-project_url = st.text_input("專案網址")
+#project_url = st.text_input("專案網址")
 project_name = st.text_input("專案名稱")
 project_context = st.text_area("專案頁文字內容（供 GPT 理解專案背景使用）")
 project_pitch = st.text_area("主要訴求／亮點")
@@ -53,7 +53,6 @@ if st.button("產生 EDM 文案"):
 文句精簡，每句不超過 20 字，且每一句都要換行。
 
 請依據下列專案資訊進行撰寫：
-【專案網址】：{project_url}
 【專案名稱】：{project_name}
 【專案頁文字內容】：{project_context}
 【主要訴求／亮點】：{project_pitch}
