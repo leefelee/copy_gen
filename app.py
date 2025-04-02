@@ -8,7 +8,7 @@ st.set_page_config(page_title="EDM 文案產生器", layout="centered")
 st.title("📧 EDM 文案產生器（群眾集資專用）")
 
 # 👉 使用者輸入欄位
-project_url = st.text_input("專案網址")
+#project_url = st.text_input("專案網址")
 project_name = st.text_input("專案名稱")
 project_context = st.text_area("專案頁文字內容（供 GPT 理解專案背景使用）")
 project_pitch = st.text_area("主要訴求／亮點")
