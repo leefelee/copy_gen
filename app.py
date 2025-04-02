@@ -54,13 +54,11 @@ target_audience = st.text_input("目標受眾")
 tone_style = st.selectbox("語氣風格", ["活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
 extra_info = st.text_area("補充資訊（選填）")
 
-TEST_API_KEY = "sk-actual-demo-key-should-be-replaced"
+# ✅ 使用者 secrets 中設定的 API 金鑰
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # 👉 當按下按鈕後產生文案
-if st.button("產生 EDM 文案（限測試 50 次）"):
-   openai.api_key = st.secrets["OPENAI_API_KEY"]
-
-
+if st.button("產生 EDM 文案"):
     # Prompt 設定
     prompt = f"""
 你是一位資深文案撰寫人，擅長撰寫 punchy、精煉且具有感召力的群眾集資宣傳文案。請根據以下專案資訊，撰寫一段短篇 EDM 文案（150字以內），需符合以下條件：
@@ -70,7 +68,6 @@ if st.button("產生 EDM 文案（限測試 50 次）"):
 語氣符合該專案的風格（例：溫暖、理性、感性、趣味、使命感等）。
 不違反任何平台規範、無誤導性、善良風俗與公共道德。
 可適度使用 emoji，但需自然、加分不干擾閱讀。
-每一句轉寫完都要換行。
 文末加入一句 CTA（行動號召語），並以「▸」結尾。
 
 請依據下列專案資訊進行撰寫：
