@@ -14,7 +14,8 @@ project_pitch = st.text_area("主要訴求／亮點")
 target_audience = st.text_input("目標受眾")
 tone_style = st.selectbox("語氣風格", ["活潑親切", "溫暖療癒", "使命感強烈", "理性專業", "潮流俐落"])
 
-api_key = st.text_input("請輸入你的 OpenAI API Key", type="password")
+# ✅ 測試用金鑰（限量 50 次）
+TEST_API_KEY = "sk-test-restricted-key"
 
 # 解析網址內容
 web_summary = ""
@@ -31,14 +32,11 @@ if project_url:
         st.warning(f"無法解析該網址內容：{str(e)}")
 
 # 👉 當按下按鈕後產生文案
-if st.button("產生 EDM 文案"):
-    if not api_key:
-        st.error("請輸入 OpenAI API Key 才能使用此功能")
-    else:
-        openai.api_key = api_key
+if st.button("產生 EDM 文案（限測試 50 次）"):
+    openai.api_key = TEST_API_KEY
 
-        # Prompt 設定
-        prompt = f"""
+    # Prompt 設定
+    prompt = f"""
 你是一位資深文案撰寫人，擅長撰寫 punchy、精煉且具有感召力的群眾集資宣傳文案。請根據以下專案資訊，撰寫一段短篇 EDM 文案（150字以內），需符合以下條件：
 
 文字節奏活潑、有力，具備吸睛開場＋情境鋪陳＋行動召喚。
@@ -55,17 +53,17 @@ if st.button("產生 EDM 文案"):
 【主要訴求／亮點】：{project_pitch}
 【目標受眾】：{target_audience}
 【語氣風格】：{tone_style}
-        """
+    """
 
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.7,
-                max_tokens=500
-            )
-            result = response.choices[0].message["content"].strip()
-            st.subheader("✍️ 產出文案")
-            st.write(result)
-        except Exception as e:
-            st.error(f"產生文案時發生錯誤：{str(e)}")
+    try:
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=500
+        )
+        result = response.choices[0].message["content"].strip()
+        st.subheader("✍️ 產出文案")
+        st.write(result)
+    except Exception as e:
+        st.error(f"產生文案時發生錯誤：{str(e)}")
