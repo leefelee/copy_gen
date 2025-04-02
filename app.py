@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 st.set_page_config(page_title="EDM 文案產生器", layout="centered")
-st.title("📧 EDM 文案產生器（群眾集資專用）")
+st.title("📧 EDM 文案產生器")
 
 # 👉 使用者輸入欄位
 #project_url = st.text_input("專案網址")
