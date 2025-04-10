@@ -58,7 +58,7 @@ if st.button("產生 EDM 文案"):
 【主要訴求／亮點】：{project_pitch}
 【目標受眾】：{target_audience}
 【語氣風格】：{tone_style}
-【補充資訊】：{extra_info}
+
     """
 
     try:
